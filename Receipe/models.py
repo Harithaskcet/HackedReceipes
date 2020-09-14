@@ -4,7 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 class Receipe(models.Model):
     name = models.CharField(max_length = 255)
-    image = models.ImageField(upload_to='uploads/')
+    image = models.URLField(max_length = 200)
     category = models.CharField(max_length = 255)
     label = models.CharField(max_length = 255)
     price = models.DecimalField(max_digits=6, decimal_places=2)

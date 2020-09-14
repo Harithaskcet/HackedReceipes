@@ -55,7 +55,7 @@ ROOT_URLCONF = 'HackedReceipe.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Receipe/templates'],
+        'DIRS': ['HackedReceipe/templates','Receipe/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
