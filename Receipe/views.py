@@ -10,7 +10,7 @@ import urllib.request
 
 def foods(request):
     receipes = Receipe.objects
-    if not receipes.filter(id=42).exists():
+    if not receipes.filter(id=1).exists():
         lists= urllib.request.urlopen('http://starlord.hackerearth.com/recipe')
         responses = json.load(lists)
         x = 2
