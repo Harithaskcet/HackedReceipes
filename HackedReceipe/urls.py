@@ -22,5 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', foods, name = "foods"),
+    path('<int:receipe_id>/addlike', addlike, name="addlike"),
+    path('search/<str:dish>', search, name="search"),
     path('receipe/',include('Receipe.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

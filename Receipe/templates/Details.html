@@ -19,10 +19,10 @@
         <div class="text-right pb-3"><h3><b>{{ receipe.name }}</b></h3></div>
         <div class = "d-flex flex-row-reverse">
         {% for x in numbers %}
-        {% if x > 0 %}
-        <img src="{% static 'star.png' %}"  class="d-inline-block align-top mr-3" alt="Responsive image" width ="20" height="20">
-        {% else %}
+        {% if x < 3 %}
         <img src="{% static 'favourite.png' %}"  class="d-inline-block align-top mr-3" alt="Responsive image" width ="20" height="20">
+        {% else %}
+        <img src="{% static 'star.png' %}"  class="d-inline-block align-top mr-3" alt="Responsive image" width ="20" height="20">
         {% endif %}
         {% endfor %}
         <span class="badge badge-pill badge-danger mr-3 pr-3 pl-3">4</span>
@@ -39,12 +39,16 @@
         </div>
         <div class = "d-flex justify-content-center pt-5">
             {% if receipe.favourite %}
-            <img src="{% static 'heart.png' %}"  class="d-inline-block  mr-3 mt-1" alt="Responsive image" width ="10" height="10">
+            <a href="javascript:{document.getElementById('like').submit()}"><img src="{% static 'heart.png' %}"  class="d-inline-block  mr-3 mt-1" alt="Responsive image" width ="20" height="20"></a>
             {% else %}
-            <img src="{% static 'dislike.png' %}"  class="d-inline-block  mr-3 mt-1" alt="Responsive image" width ="20" height="20">
+            <a href="javascript:{document.getElementById('like').submit()}"><img src="{% static 'dislike.png' %}"  class="d-inline-block  mr-3 mt-1" alt="Responsive image" width ="20" height="20"></a>
             {% endif %}
             <b>Favourite This Receipe </b>
         </div>
+        <form method="POST" id="like" action="{% url 'like' receipe.id %}">
+            {% csrf_token %}
+            <input type="hidden"/>
+        </form>
     </div> 
 </div>
 {% endblock %}

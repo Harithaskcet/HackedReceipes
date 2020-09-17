@@ -46,12 +46,21 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
+    <script>
+      myFunc = () => {
+          var searchTerm = document.getElementById("sea").value;
+          return window.location.href = "{% url 'search' 12345 %}".replace('12345', searchTerm);
+      }
+    </script>
   </head>
   <body>
   <header>
+      <div id="loader">
+      </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <img src="{% static 'burger.png' %}"  class="d-inline-block align-top mr-3" alt="Responsive image" width ="40" height="40">
         <a class="navbar-brand" href=""> Hacked Receipes</a>
+        <!-- <p id="para text-white"></p> -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -59,13 +68,19 @@
           <div class="navbar-nav ml-auto">
                 <form class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2">
                         <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
-                          aria-label="Search">
-                          <img src="{% static 'search.png' %}"  class="d-inline-block align-top mr-3" alt="Responsive image" width ="20" height="20">
+                          aria-label="Search" id="sea">
+                      <a href="javascript:{document.getElementById('searchDish').submit()}">
+                        <img src="{% static 'search.png' %}"  class="d-inline-block align-top mr-3" alt="Responsive image" width ="20" height="20">
+                      </a>
                       </form>
-            <a class="nav-link" href="">Home</a>
+            <a class="nav-link" href="{% url 'foods' %}">Home</a>
           </div>
         </div>
       </nav>
+            <form method="POST" id="searchDish" action="javascript:myFunc(this)">
+          {% csrf_token %}
+          <input type="hidden"/>
+      </form>
   </header>
 <main role="main">
         <div class="container">
